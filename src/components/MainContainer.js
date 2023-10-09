@@ -7,6 +7,8 @@ function MainContainer() {
   const stockDatabase = "http://localhost:3001/stocks";
   const [allStocks, setAllStocks] = useState([]);
   const [boughtStocks, setBoughtStocks] = useState([]);
+  const [sortedStocks, setSortedStocks] = useState(null);
+  const stocksToDisplay = ( sortedStocks ) ? sortedStocks : allStocks;
 
   useEffect(fetchStocks, [])
 
@@ -42,12 +44,16 @@ function MainContainer() {
       }}))
   }
 
+  function sortStocks(orderedStocks) {
+    setSortedStocks(orderedStocks)
+  }
+
   return (
     <div>
-      <SearchBar />
+      <SearchBar stocks={allStocks} sortStocks={sortStocks} />
       <div className="row">
         <div className="col-8">
-          <StockContainer stocks={allStocks} clickOnStock={clickOnStock} />
+          <StockContainer stocks={stocksToDisplay} clickOnStock={clickOnStock} />
         </div>
         <div className="col-4">
           <PortfolioContainer boughtStocks={boughtStocks} clickOnStock={clickOnStock} />
