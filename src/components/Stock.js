@@ -1,15 +1,15 @@
 import React from "react";
 
-function Stock({stock, clickOnStock }) {
+function Stock({value, stock, clickOnStock }) {
   const { name, ticker, price} = stock;
 
-  function handleClick() {
-    clickOnStock(stock)
+  function handleClick(event) {
+    clickOnStock(stock, value)
   }
 
   return (
     <div>
-      <div className="card" onClick={handleClick} >
+      <div className="card" value={value} onClick={handleClick} >
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{ticker+": "+price}</p>

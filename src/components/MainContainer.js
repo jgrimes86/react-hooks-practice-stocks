@@ -16,17 +16,23 @@ function MainContainer() {
     .then(data => setAllStocks(() => data))
   }
 
-  function clickOnStock(stock) {
+  function clickOnStock(stock, value) {
+    if (value === "listed-stock") {
+      buyStock(stock)
+    } else if (value === "bought-stock") {
+      sellStock(stock)
+    }
+  }
+  
+  function buyStock(stock) {
     const alreadyBoughtStock = boughtStocks.find((oneStock) => {
       if (oneStock === stock) {return true}
     })
     if (alreadyBoughtStock) {
-      sellStock(stock)
-    } else {buyStock(stock)}
-  }
-  
-  function buyStock(stock) {
-    setBoughtStocks([...boughtStocks, stock])
+      return null
+    } else {
+      setBoughtStocks([...boughtStocks, stock])
+    }
   }
 
   function sellStock(stock) {

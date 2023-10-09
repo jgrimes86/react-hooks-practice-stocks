@@ -4,7 +4,7 @@ import Stock from "./Stock";
 function PortfolioContainer({boughtStocks, clickOnStock}) {
 
   const boughtStockList = boughtStocks.map((stock) => {
-    return <Stock key={stock.id} stock={stock} clickOnStock={clickOnStock} />
+    return <Stock value={"bought-stock"} key={stock.id} stock={stock} clickOnStock={clickOnStock} />
   })
 
   return (
